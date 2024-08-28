@@ -46,9 +46,7 @@ def get_base_fetch_env(RobotEnvClass: Union[MujocoPyRobotEnv, MujocoRobotEnv]):
                 n_substeps (int): number of substeps the simulation runs on every call to step
                 gripper_extra_height (float): additional height above the table when positioning the gripper
                 block_gripper (boolean): whether or not the gripper is blocked (i.e. not movable) or not
-                has_object (boolean): whether or not the environment has an object
-                target_in_the_air (boolean): whether or not the target should be in the air above the table or on the table surface
-                target_offset (float or array with 3 elements): offset of the target
+                has_object (boolean): whether or not the environment has an object                target_in_the_air (boolean): whether or not the target should be in the air above the table or on the table surface              target_offset (float or array with 3 elements): offset of the target
                 obj_range (float): range of a uniform distribution for sampling initial object positions
                 target_range (float): range of a uniform distribution for sampling a target
                 distance_threshold (float): the threshold after which a goal is considered achieved
@@ -403,7 +401,7 @@ class MujocoFetchEnv(get_base_fetch_env(MujocoRobotEnv)):
 
         # Move end effector into position.
         gripper_target = np.array(
-            [-0.498, 0.005, -0.431 + self.gripper_extra_height]
+            [-0.96, -0.46, -0.415 + self.gripper_extra_height]
         ) + self._utils.get_site_xpos(self.model, self.data, "robot0:grip")
         gripper_rotation = np.array([1.0, 0.0, 1.0, 0.0])
         self._utils.set_mocap_pos(self.model, self.data, "robot0:mocap", gripper_target)
